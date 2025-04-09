@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+  <h2>All Questions</h2>
+
+  <p><a href="{% url 'post_question' %}">+ Post a Question</a></p>
+
+  <ul>
+    {% for question in questions %}
+      <li>
+        <strong><a href="{% url 'question_detail' question.id %}">{{ question.title }}</a></strong><br>
+        <small>by {{ question.author.username }} on {{ question.created_at|date:"M d, Y H:i" }}</small>
+      </li>
+    {% empty %}
+      <li>No questions posted yet.</li>
+    {% endfor %}
+  </ul>
+
+  {% if user.is_authenticated %}
+    <form action="{% url 'logout' %}" method="post" style="display:inline;">
+    {% csrf_token %}
+    <button type="submit">Logout</button>
+    </form>
+  {% else %}
+    <p><a href="{% url 'login' %}">Login</a></p>
+  {% endif %}
+{% endblock %}
