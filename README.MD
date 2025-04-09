@@ -30,8 +30,13 @@ This is a simple Q&A web application built using Django, inspired by **Quora**, 
 
 Follow these steps to set up the project locally:
 
-### 1. Clone the repository
 
 ```bash
 git clone https://github.com/YOUR_USERNAME/quora-clone.git
-cd quora-clone
+cd quora_demo
+pip install -r requirements.txt
+python manage.py makemigrations
+python manage.py migrate
+python manage.py runserver
+
+
